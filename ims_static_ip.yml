@@ -9,10 +9,10 @@
   tasks:
     - name: "Copy poweshell script file"
       win_copy:
-        src: files/powershell.ps1
+        src: files/pre-migrate.ps1
         dest: 'C:\temp\'
         remote_src: no
 
     - name: "Run Powershell command"
-      win_command: powershell.exe -ExecutionPolicy ByPass -File C:/temp/powershell.ps1
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:/temp/pre-migrate.ps1
 ...
