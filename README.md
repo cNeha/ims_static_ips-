@@ -3,7 +3,8 @@
 The repository contains IMS premigration scripts for Static IP migration on top of MS Windows OS.  
 
 ## Prerequisities:
-WinRM setup and enabled  
+WinRM setup and enabled - all necesssary prerequisite scripts from ansible are included in setup section  
+  
 See also:  
 https://docs.ansible.com/ansible/2.8/user_guide/windows_setup.html  
 https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html  
