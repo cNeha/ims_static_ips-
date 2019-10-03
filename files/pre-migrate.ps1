@@ -1,15 +1,15 @@
 
-$ucet="novyucet"
+$account="new_local_account"
 $pass="password"
 $scht="migetu"
-$cesta="C:\scripts"
-$scrfile=$cesta+"\setnet.ps1"
+$path="C:\scripts"
+$scrfile=$path+"\setnet.ps1"
 $diskfile=":\diskfilemig.txt"
 
-if (!(get-item $cesta -ErrorAction SilentlyContinue)) { New-Item "C:\scripts" -Type directory -path $cesta }
+if (!(get-item $path -ErrorAction SilentlyContinue)) { New-Item "C:\scripts" -Type directory -path $path }
 
-New-LocalUser -Name $ucet -Password (ConvertTo-SecureString -String $pass -AsPlainText -Force)
-Add-LocalGroupMember -Group Administrators -Member $ucet
+New-LocalUser -Name $account -Password (ConvertTo-SecureString -String $pass -AsPlainText -Force)
+Add-LocalGroupMember -Group Administrators -Member $account
 
 Get-NetAdapter | % { 
     write-output ("`$ifi=(get-netadapter | where { `$_.macaddress -like '"+$_.macaddress+"' }).interfaceindex") > $scrfile
@@ -75,5 +75,5 @@ write-output("   }") >> $scrfile
 write-output("}") >> $scrfile
 
 $a="-ExecutionPolicy Bypass -File "+$scrfile
-Register-ScheduledTask $scht -action (New-ScheduledTaskAction -Execute "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument $a) -Trigger (New-ScheduledTaskTrigger -Once -at (get-date).date -RepetitionInterval (New-TimeSpan -Minutes 10) -RepetitionDuration (New-TimeSpan -Hours 24)) -RunLevel Highest -user $ucet -Password $pass
+Register-ScheduledTask $scht -action (New-ScheduledTaskAction -Execute "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument $a) -Trigger (New-ScheduledTaskTrigger -Once -at (get-date).date -RepetitionInterval (New-TimeSpan -Minutes 10) -RepetitionDuration (New-TimeSpan -Hours 24)) -RunLevel Highest -user $account -Password $pass
 write-output("Disable-ScheduledTask $scht") >> $scrfile
