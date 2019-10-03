@@ -1,0 +1,19 @@
+---
+- name: "Run premigration tasks on Windows machines" 
+  hosts: all
+  vars:
+    ansible_connection: winrm
+    ansible_winrm_transport: kerberos
+    ansible_user: username@MY.DOMAIN.COM
+    ansible_password: Password
+    ansible_winrm_server_cert_validation: ignore
+  tasks:
+    - name: "Copy poweshell script file"
+      win_copy:
+        src: files/pre-migrate.ps1
+        dest: 'C:\temp\'
+        remote_src: no
+
+    - name: "Run Powershell command"
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:/temp/pre-migrate.ps1
+...
