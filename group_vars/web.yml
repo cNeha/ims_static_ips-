@@ -1,0 +1,6 @@
+ansible_connection: winrm
+ansible_winrm_transport: kerberos
+ansible_user: username@MY.DOMAIN.COM
+ansible_password: Password
+ansible_winrm_server_cert_validation: ignore
+
