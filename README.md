@@ -14,7 +14,7 @@ Default authentication method is Kerberos
 ## Recommendation
 Integrate as CloudForms premigration playbook utilizing Embeded Ansible feature  
 
-## Cnfiguration
+## Configuration
 Folder files/pre-migrate.ps1 contains static configuration for creation of local admin user that will  
 configure and execute tasks connected to backup and restore of static network settings.  
   
