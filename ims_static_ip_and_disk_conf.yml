@@ -2,10 +2,9 @@
 - name: "Run premigration tasks on Windows machines" 
   hosts: all
   vars:
-    ansible_connection: winrm
-    ansible_winrm_transport: kerberos
-    ansible_user: username@MY.DOMAIN.COM
-    ansible_password: Password
+    ansible_connection: "{{ ansible_connection }}"
+    ansible_user: "{{ ansible_user }}"
+    ansible_password: "{{ ansible_password }}"
     ansible_winrm_server_cert_validation: ignore
     ignore_errors: yes
   tasks:
